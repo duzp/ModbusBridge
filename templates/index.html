@@ -35,7 +35,7 @@
                 <h2 class="title">Мост Modbus TCP <-> RTU</h2>
                 <form method="POST" action="/control">
                     {% if not server_is_running %}
-                    <h4 class="title">Последовательный порт</h4>
+                    <h4 class="title">串行端口</h4>
                     <div class="input-group">
                         <div class="rs-select2 js-select-simple select--no-search">
                             <select id="ser_port_selector" name="serial_port" autofocus required>
@@ -43,7 +43,7 @@
                                         {% if not default_port %}
                                         selected="selected"
                                         {% endif %}
-                                        value="">COM-порт
+                                        value="">COM-port
                                 </option>
                                 {% for port in ports %}
                                 <option value="{{ port.device }}"
@@ -69,7 +69,7 @@
                                                 {% if not default_speed %}
                                                 selected="selected"
                                                 {% endif %}
-                                                value="">Скорость
+                                                value="">速率
                                         </option>
                                         {% for speed in speeds %}
                                         <option
@@ -92,7 +92,7 @@
                                                 {% if not default_mode %}
                                                 selected="selected"
                                                 {% endif %}
-                                                value="">Режим порта
+                                                value="">端口模式
                                         </option>
                                         {% for mode in modes %}
                                         <option
@@ -115,48 +115,48 @@
                                         {% if default_use_rts %}
                                         selected="selected"
                                         {% endif %}
-                                >Управлять передачей через RTS
+                                >通过RTS控制传输
                                 </option>
                                 <option value="False"
                                         {% if not default_use_rts %}
                                         selected="selected"
                                         {% endif %}
-                                >Не управлять сигналом RTS
+                                >不控制RTS信号
                                 </option>
                             </select>
                             <div class="select-dropdown"></div>
                         </div>
                     </div>
-                    <h4 class="title">TCP сервер</h4>
+                    <h4 class="title">TCP 服务器</h4>
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
-                                <label for="tcp_port_selector">TCP-порт</label>
+                                <label for="tcp_port_selector">TCP-Port</label>
                                 <input class="input--style-1" id="tcp_port_selector" type="number" name="tcp_port"
                                        min="1" max="65535" value="{{tcp_port_selector}}">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
-                                <label for="tcp_max_con">Макс. соединений</label>
+                                <label for="tcp_max_con">最大连接数</label>
                                 <input class="input--style-1" id="tcp_max_con" type="number"
                                        placeholder="Макс. соединений" name="tcp_max_connections"
                                        min="1" max="32" value="{{tcp_max_connections}}">
                             </div>
                         </div>
                     </div>
-                    <h4 class="title">Настройки передачи</h4>
+                    <h4 class="title">传输设置</h4>
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
-                                <label for="rtu_max_trys">Максимум повторов</label>
+                                <label for="rtu_max_trys">最大尝试次数</label>
                                 <input class="input--style-1" id="rtu_max_trys"
                                        type="number" name="rtu_max_trys" min="0" max="15" value="{{rtu_max_trys}}"/>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
-                                <label for="rtu_min_delay">Задержка, мс</label>
+                                <label for="rtu_min_delay">RTU最小延时</label>
                                 <input class="input--style-1" id="rtu_min_delay"
                                        type="number" name="rtu_min_delay" min="1" max="100" value="{{rtu_min_delay}}"/>
                             </div>
@@ -165,7 +165,7 @@
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
-                                <label for="rtu_rx_timeout">Таймаут ожидания ответа, мс</label>
+                                <label for="rtu_rx_timeout">RTU接收超时</label>
                                 <input class="input--style-1" id="rtu_rx_timeout"
                                        type="number" name="rtu_rx_timeout" min="1" max="1000"
                                        value="{{rtu_rx_timeout}}"/>
@@ -173,7 +173,7 @@
                         </div>
                         <div class="col-2">
                             <div class="input-group">
-                                <label for="tcp_timeout">Таймаут бездействия клиента, с</label>
+                                <label for="tcp_timeout">TCP客户端无连接超时</label>
                                 <input class="input--style-1" id="tcp_timeout"
                                        type="number" name="tcp_timeout" min="0" max="1000" value="{{tcp_timeout}}"/>
                             </div>
@@ -183,16 +183,16 @@
                     <h4 class="btn--red">{{last_error|safe}}</h4>
                     {% endif %}
                     <div class="p-t-20">
-                        <button class="btn btn--radius btn--green" type="submit">Запустить</button>
+                        <button class="btn btn--radius btn--green" type="submit">运行</button>
                     </div>
                     {% else %}
                     <div class="row row-space">
                         <div class="col-4">
-                            <h4>Сервер запущен: TCP[{{tcp_port_selector}}] <-> {{default_port}}[{{default_speed}}]</h4>
+                            <h4>服务启动: TCP[{{tcp_port_selector}}] <-> {{default_port}}[{{default_speed}}]</h4>
                         </div>
                     </div>
                     <div class="p-t-20">
-                        <button class="btn btn--radius btn--red" type="submit">Остановить</button>
+                        <button class="btn btn--radius btn--red" type="submit">停止</button>
                     </div>
                     {% endif %}
                 </form>

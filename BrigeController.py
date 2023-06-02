@@ -37,7 +37,7 @@ class BridgeController:
     def set_port(self, v):
         self._port = v
         
-    port = property(get_port, set_port, None, 'Это свойство port.')
+    port = property(get_port, set_port, None, '此属性为端口.')
 
     def status(self):
         return self._status

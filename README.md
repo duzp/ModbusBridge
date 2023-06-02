@@ -1,25 +1,25 @@
 # README
 
-Интерфейс для настройки демона [mbusd](https://github.com/3cky/mbusd)
+用于配置守护进程的接口 [mbusd](https://github.com/3cky/mbusd)
 
-Веб-приложение позволяющее настроить мост ModbusTCP-RTU через браузер.
+一个Web应用进程，允许您通过浏览器配置ModbusTCP-RTU桥接器。
 
-### Особенности
-* Основано на python3 и Flack
-* Используется готовый демон _mbusd,_ который необходимо собрать под
-конкретную платформу и положить исполняемый файл в каталог **bin**
-* Поддерживается упаковка в 1 файл через _pyinstaller_
-* Один иснстанс сервера и демона _mbusd_
-* Настройки сохраняются только внутри одной сессии
-* Порт для веб-интерфейса: 7123
-* Поддержка mDNS:
+### 特性
+* 基于 python3 和 Flack
+* 使用现成的守护进程_mbusd，必须在其下构建
+特定平台并将可执行文档放在 **bin** 目录中
+* 支持通过 _pyinstaller_ 打包为单个可执行文件
+* 一个服务器和守护进程实例 _mbusd_
+* 设置仅保存在一个会话中
+* Web 界面端口: 7123
+* 支持 mDNS:
     * `_http._tcp.local.` - Config webpage
     * `_mbtcp._tcp.local.` - Bridge server
 
-### Сборка
-1. Склонируйте репозиторий `mbusd`
-2. Отредактируйте файл CMakeLists.txt (только для Windows):
-    Закоментируйте строки:
+### 构建
+1. 克隆存储库 `mbusd`
+2. 编辑文件 CMakeLists.txt (仅适用于 Windows):
+    对以下代码进行注释:
 ```bash
 #include(FindSystemd)
 
@@ -30,14 +30,14 @@
 #SET(CMAKE_C_FLAGS_DEBUG     "${BASIC_C_FLAGS} -g")
 ```
 
-3. Установите [msys2](https://www.msys2.org/) для вашей архитектуры (x86/amd64) (только для Windows)
-4. Используя консоль `msys2` установите нутри него gcc, make и cmake (только для Windows)
+3. 安装 [msys2](https://www.msys2.org/) 根据您的CPU架构 (x86/amd64) (仅适用于 Windows)
+4. 使用控制台 `msys2` 安装它的内部 gcc, make & cmake (仅适用于 Windows)
 ```bash
 $ pacman -Syy
 $ pacman -S gcc make cmake
 ```
 
-5. Соберите `mbusd`
+5. 编译 `mbusd`
 ```bash
 $ cd /<disk>/path/to/mbusd
 $ mkdir build && cd build
@@ -45,23 +45,17 @@ $ cmake ..
 $ make
 ```
 
-6. Скопируйте полученый исполняемый файл `mbusd.exe` в подкаталог bin проекта
-7. Скопируйте библиотеку `msys-2.0.dll` в подкаталог bin проекта
+6. 复制生成的可执行文件 `mbusd.exe` 到项目的 bin 子目录
+7. 复制库 `msys-2.0.dll` 到项目的 bin 子目录
 
 
-### Запуск
+### 运行
 `$ python ModbusBridge.py`
 
-### Упаковка в 1 файл
-Требуется модуль pyinstaller для python
-Выполните команду
+### 打包为单个文件
+需要用 python 的 pyinstaller 模块
+运行命令
 ```bash
-$ pyinstaller -w -F \
-    -i static/bridge.ico \
-    --add-data "bin;bin" \
-    --add-data "static;static" \
-    --add-data "templates;templates" \
-    ModbusBridge.py 
+$ pyinstaller -w -F -i static/bridge.ico --add-data "bin;bin" --add-data "static;static" --add-data "templates;templates" ModbusBridge.py 
 ```
-В каталоге `dist` появится исполняемый файл, котрый можно
-запускать на любой машине с Windows Vista и выше.
+可执行文档将出现在“dist”目录中，您可以在任何装有 Windows Vista 或更高版本的计算机上运行

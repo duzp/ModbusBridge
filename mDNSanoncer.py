@@ -26,7 +26,7 @@ class mDNSanoncer:
         self._info = ServiceInfo(
             self.service,
             self.name,
-            address = self.address,
+            #address = self.address,
             port = self.port,
             properties = self.desc,
             server = self.server

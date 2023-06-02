@@ -28,7 +28,7 @@ else:
 www_port = 7123
 speeds = (9600, 38400, 57600, 115200)
 modes = ['8{}{}'.format(parity, stop) for parity in ('N', 'E', 'O') for stop in (1, 2)]
-last_error = "Сервер не запущен"
+last_error = "服务器未运行"
 
 bridge = BridgeController()
 
@@ -114,7 +114,7 @@ def filter_ports(portlist):
             inaccesable = int(match[1]) > 64
             p = Portrecord(
                 device=port.device,
-                description='{} (недоступно)'.format(port.description) if inaccesable else port.description,
+                description='{} (不可用)'.format(port.description) if inaccesable else port.description,
                 inaccesable=inaccesable
             )
             newports.append(p)
