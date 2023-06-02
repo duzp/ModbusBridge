@@ -16,7 +16,7 @@
     * `_http._tcp.local.` - Config webpage
     * `_mbtcp._tcp.local.` - Bridge server
 
-### 构建
+### 构建 （bin中已经附带编译好的exe 可省略此步骤）
 1. 克隆存储库 `mbusd`
 2. 编辑文件 CMakeLists.txt (仅适用于 Windows):
     对以下代码进行注释:
