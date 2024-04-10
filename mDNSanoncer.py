@@ -26,11 +26,12 @@ class mDNSanoncer:
         self._info = ServiceInfo(
             self.service,
             self.name,
-            #address = self.address,
+            # address = self.address,
             port = self.port,
             properties = self.desc,
             server = self.server
         )
+        self._info.address = self.address  # 设置地址
         mDNSanoncer._log.warning('Anouncing service {}'.format(self._info))
         mDNSanoncer.zeroconf.register_service(self._info)
         
